@@ -1,2 +1,2 @@
 # Axis-and-Allies-Algorithm
-We makin' an A&amp;A bot boyeeez
+We're making an Axis and Allies artificial intelligence
