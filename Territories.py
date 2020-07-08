@@ -2,7 +2,7 @@
 class Territory( object ):
     """Model a territory in axis and allies"""
     
-    def __init__(self, nation, adj_territories, units, name):
+    def __init__(self, nation, adj_territories, units, name, value = 0):
         """
         Initialize the territory with a nation, and adjacent territories
         """
@@ -11,6 +11,7 @@ class Territory( object ):
         self.__adj_territories = []
         self.__units = []
         self.__name = ""
+        self.__value = value
         
         #If the parameters are of the correct type update the corresponding values
         if type(nation) == str:
@@ -21,6 +22,8 @@ class Territory( object ):
             self.__adj_territories = adj_territories
         if type(units) == list:
             self.__units = units
+        if type(value) == int:
+            self.__value = value
     
     def __str__( self ):
         """Return a string representation of the territory"""
@@ -58,7 +61,7 @@ class Land( Territory ):
     """"Land Territory"""
     def __init__(self, nation, adj_territories, units, name, IC, capital,
                  units_produced, value):
-        super().__init__(self, nation, adj_territories, units, name)
+        super().__init__(self, nation, adj_territories, units, name, value)
         #IC determines if there is an industrial complex in the territory and
         #whether the IC was built(2) or existed at the start of the game(1)
         #with (0) representing no IC
@@ -66,14 +69,13 @@ class Land( Territory ):
         self.__capital = False
         self.__units_produced = 0
         #Value is the IPC value of the territory
-        self.__value = 0
+        
         if type(IC) == int:
             if IC <= 2 and IC >= 0:
                 self.__IC = IC
         if type(capital) == bool:
             self.__capital = capital
-        if type(value) == int:
-            self.__value = value
+        
             
         def industrial_complex( self ):
             """Returns whether there is an IC on the terriory and if so what type""" 
@@ -121,8 +123,8 @@ class Land( Territory ):
         
 class Sea( Territory ):
     """Sea Territory"""
-    def __init__(self, nation, adj_territories, units, name):
-        super().__init__(self, nation, adj_territories, units, name)
+    def __init__(self, nation, adj_territories, units, name, value):
+        super().__init__(self, nation, adj_territories, units, name, value)
         
     def create_units(self, units, territory):
         for unit in units:

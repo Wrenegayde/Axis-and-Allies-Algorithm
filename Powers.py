@@ -37,6 +37,5 @@ class Power( object ):
     
     def collect_IPCs(self):
         for territory in self.__territories:
-            if type(territory) == Territories.Land:
-                self.__IPCs = self.__IPCs + territory.value()
+            self.__IPCs = self.__IPCs + territory.value()
     
