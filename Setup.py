@@ -4,11 +4,14 @@
 #  - Insantiate each territory along with its adjacent territories
 #  - Put each territory into its respective power
 #  - Put units in their respective territories
+#       -If you don't know about list comprehensions yet, let's talk before you do this
+#       -Every unit has to be instantiated with its power, e.g. Units.Infantry(power=USSR)
+#               ---Nathan
 ##############################################################################
 
 import Powers
 import Territories
-import Units
+import Units as u
 
 def setup():
     
@@ -20,23 +23,23 @@ def setup():
     US = Powers.Power("Allies", [], 36, "US")
     
     #Create Land Territories
-    eastern_canada = Territories.Land("UK", [], [], "Eastern Canada", 3, 0, False)
-    eastern_usa = Territories.Land("US", [], [], "Eastern USA", 12, 2, True)
+    eastern_canada = Territories.Land("UK", [], [u.Tank(power=UK)], "Eastern Canada", 3, 0, False)
+    eastern_usa = Territories.Land("US", [], [u.Infantry(power=US) for x in range(2)] + [u.Bomber(power=US), u.Fighter(power=US), u.Tank(power=US), u.AntiAircraft(power=US)], "Eastern USA", 12, 2, True)
     west_indies = Territories.Land("US", [], [], "West Indies", 1, 0, False)
     panama = Territories.Land("US", [], [], "Panama", 1, 0, False)
     venezuela = Territories.Land("neutral", [], [], "Venezuela", 0, 0, False)
     peru = Territories.Land("neutral", [], [], "Peru", 0, 0, False)
     argentina = Territories.Land("neutral", [], [], "Argentina", 0, 0, False)
     brazil = Territories.Land("US", [], [], "Brazil", 3, 0, False)
-    united_kingdom = Territories.Land("UK", [], [], "United Kingdom", 8, 2, True)
+    united_kingdom = Territories.Land("UK", [], [u.Infantry(power=UK) for x in range(2)] + [u.Tank(power=UK), u.AntiAircraft(power=UK)], "United Kingdom", 8, 2, True)
     spain = Territories.Land("neutral", [], [], "Spain", 0, 0, False)
     gibraltar = Territories.Land("UK", [], [], "Gibraltar", 0, 0, False)
-    western_europe = Territories.Land("Germany", [], [], "Western Europe", 6, 0, True)
+    western_europe = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(2)] + [u.Tank(power=Germany) for x in range(2)] + [u.Fighter(power=Germany), u.AntiAircraft(power=Germany)], "Western Europe", 6, 0, True)
     switz = Territories.Land("neutral", [], [], "Switz", 0, 0, False)
-    finland = Territories.Land("Germany", [], [], "Finland", 2, 0, False)
+    finland = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(3)] + [u.Tank(power=Germany), u.Fighter(power=Germany)], "Finland", 2, 0, False)
     sweden = Territories.Land("neutral", [], [], "Sweden", 0, 0, False)
-    germany = Territories.Land("Germany", [], [], "Germany", 10, 2, True)
-    southern_europe = Territories.Land("Germany", [], [], "Southern Europe", 6, 2, False)
+    germany = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(4)] + [u.Tank(power=Germany) for x in range(2)] + [u.AntiAircraft(power=Germany)], "Germany", 10, 2, True)
+    southern_europe = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(2)] + [u.Tank(power=Germany, u.AntiAircraft(power=Germay)], "Southern Europe", 6, 2, False)
     eastern_europe = Territories.Land("Germany", [], [], "Eastern Europe", 3, 0, False)
     ukraine = Territories.Land("Germany", [], [], "Ukraine", 3, 0, False)
     algeria = Territories.Land("Germany", [], [], "Algeria", 1, 0, False)
