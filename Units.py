@@ -86,7 +86,7 @@ class LandUnit(Unit):
      
 class Infantry(LandUnit):
     def __init__(self,attack=1,defense=2,cost=3,move=1,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
 
     def __str__(self):
         return "infantry"
@@ -97,7 +97,7 @@ class Infantry(LandUnit):
 
 class Tank(LandUnit):
     def __init__(self,attack=3,defense=2,cost=5,move=2,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
 
     def __str__(self):
         return "tank"
@@ -108,7 +108,7 @@ class Tank(LandUnit):
 
 class AntiAircraft(LandUnit):
     def __init__(self, attack=0,defense=1,cost=5,move=1,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
         
     def aagun_hits(self, air_units):
         """
@@ -145,7 +145,7 @@ class AirUnit(Unit):
 
 class Fighter(AirUnit):
     def __init__(self,attack=3,defense=4,cost=12,move=4,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
 
     def __str__(self):
         return "fighter"
@@ -156,7 +156,7 @@ class Fighter(AirUnit):
         
 class Bomber(AirUnit):
     def __init__(self,attack=4,defense=1,cost=15,move=6,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
         
     def bombing_raid(self, shot_down):
         """
@@ -192,7 +192,7 @@ class SeaUnit(Unit):
 
 class Battleship(SeaUnit):#run some test cases on how this constructor works
     def __init__(self,attack=4,defense=4,cost=24,move=2,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
         
         #Do we want a bombard() method here, or will we add that in our combat function?
 
@@ -205,7 +205,7 @@ class Battleship(SeaUnit):#run some test cases on how this constructor works
 
 class Carrier(SeaUnit):
     def __init__(self,attack=1,defense=3,cost=18,move=2,cargo=[],power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
         self.__cargo = cargo
 
     def add_cargo(self,new_cargo):
@@ -242,7 +242,7 @@ class Carrier(SeaUnit):
 
 class Submarine(SeaUnit):
     def __init__(self,attack=2,defense=2,cost=8,move=2,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
     
     #do we want a first strike method, or does that go in the combat function?
 
@@ -255,7 +255,7 @@ class Submarine(SeaUnit):
 
 class Transport(SeaUnit):
     def __init__(self,attack=0,defense=1,cost=8,move=2,cargo=[],power=None):
-        super().__init__(attack,defense,cost,move,0,power)
+        super().__init__(attack,defense,cost,move,power)
         self.__cargo = cargo
 
     def add_cargo(self,new_cargo):
