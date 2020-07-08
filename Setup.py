@@ -4,6 +4,9 @@
 #  - Insantiate each territory along with its adjacent territories
 #  - Put each territory into its respective power
 #  - Put units in their respective territories
+#       -If you don't know about list comprehensions yet, let's talk before you do this
+#       -Every unit has to be instantiated with its power, e.g. Units.Infantry(power=USSR)
+#               ---Nathan
 ##############################################################################
 
 import Powers
