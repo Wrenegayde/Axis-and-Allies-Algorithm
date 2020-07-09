@@ -11,6 +11,7 @@ import Powers
 import Territorries
 import Units
 import Setup
+import Combat
 
 def buy_units(power):
     pass
@@ -22,7 +23,7 @@ def declare_attacks(power):
     then it will call the combat function as many times as it needs
     '''
     
-    #combat(power, defender, units, territory)
+    #do_combat(power, defender, units, territory)
     
 def noncombat_move(power):
     pass
