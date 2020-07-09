@@ -59,8 +59,7 @@ class Territory( object ):
 
 class Land( Territory ):
     """"Land Territory"""
-    def __init__(self, nation, adj_territories, units, name, IC, capital,
-                 units_produced, value):
+    def __init__(self, nation, adj_territories, units, name, value, IC, capital):
         super().__init__(self, nation, adj_territories, units, name, value)
         #IC determines if there is an industrial complex in the territory and
         #whether the IC was built(2) or existed at the start of the game(1)
@@ -92,7 +91,6 @@ class Land( Territory ):
         def value( self ):
             """Returns the IPC value of the territory"""
             return self.__value
-        
         def create_units(self, units):
             """
             Creates units on a territory while tracking whether the territory
@@ -132,7 +130,7 @@ class Sea( Territory ):
                 if territory.units_produced() < territory.value():
                     self.__units.append(unit)
                     territory.increase_units_produced()
-            elif territory.industrial_complex() == 2:
+            elif territory.inductrial_complex() == 2:
                 self.__units.append(unit)
                     
                 
