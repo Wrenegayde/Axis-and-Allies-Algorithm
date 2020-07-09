@@ -11,9 +11,9 @@ import Powers
 import Territorries
 import Units
 import Setup
-import Combat
 
 def buy_units(power):
+    #Will return the bought units as a list to be used later in the place units
     pass
 
 def declare_attacks(power):
@@ -23,15 +23,18 @@ def declare_attacks(power):
     then it will call the combat function as many times as it needs
     '''
     
-    #do_combat(power, defender, units, territory)
+    #combat(power, defender, units, territory)
     
 def noncombat_move(power):
+    
     pass
 
-def place_units(power):
+def place_units(power, units):
+    #Uses the list created in the buy_units function
     pass
 
 def collect_IPCs(power):
+    pass
 
 def take_turn(power):
     buy_units(power)
@@ -39,6 +42,11 @@ def take_turn(power):
     noncombat_move(power)
     place_units(power)
     collect_IPCs(power)
+
+def check_win():
+    #Returns a boolean to check if a side has won
+    #True if so, False if not
+    pass
 
 def main():
     #We can have the setup function return the 5 powers as a list
@@ -48,6 +56,8 @@ def main():
     while not win:
         for power in powers:
             take_turn(power)
+        if check_win():
+            break
     
     
 
