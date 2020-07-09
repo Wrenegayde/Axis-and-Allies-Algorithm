@@ -132,7 +132,7 @@ class Sea( Territory ):
                 if territory.units_produced() < territory.value():
                     self.__units.append(unit)
                     territory.increase_units_produced()
-            elif territory.inductrial_complex() == 2:
+            elif territory.industrial_complex() == 2:
                 self.__units.append(unit)
                     
                 
