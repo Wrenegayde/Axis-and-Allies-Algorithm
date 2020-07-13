@@ -20,6 +20,10 @@ def buy_units(power):
     finished = False
     bought_units = []
     
+    keep_going = input("Do you want to buy any more units? (y/n): ")
+    if keep_going.lower() == "n":
+        finished = True
+    
     while spent_ipcs <= power.IPCs() and not finished:
         buying_type = input("What type of unit would you like to buy: ")
         
@@ -35,7 +39,7 @@ def buy_units(power):
         try:
             buying_num = int(buying_num)
             total_cost = buying_num * buying_type.get_cost()
-            if total_cost <= power.IPCs and buying_num > 0:
+            if total_cost <= power.IPCs() and buying_num > 0:
                 spent_ipcs += total_cost
                 power.spend_IPCs(total_cost)
                 bought_units = bought_units + [buying_type for x in range(buying_num)]
@@ -44,10 +48,6 @@ def buy_units(power):
         except ValueError:
             print("That is not a number of units that you can buy")
             continue
-            
-        keep_going = input("Do you want to buy any more units? (y/n): ")
-        if keep_going.lower() == "n":
-            finished = True
 
     return bought_units #Will return the bought units as a list to be used later in the place units
 
@@ -93,6 +93,13 @@ def main():
             take_turn(power)
         if check_win():
             break
+    
+    """
+    #Test case
+    Russia = Powers.Power("Allies", [], 24, "USSR")
+    print(buy_units(Russia))
+    print("remaining IPCs: " + str(Russia.IPCs()))
+    """
     
     
 
