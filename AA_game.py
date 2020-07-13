@@ -9,12 +9,47 @@
 #Imports
 import Powers
 import Territorries
-import Units
+import Units as un
 import Setup
 
 def buy_units(power):
-    #Will return the bought units as a list to be used later in the place units
-    pass
+    UNITS = [un.Infantry(), un.Tank(), un.AntiAircraft(), un.Fighter(), un.Bomber(), un.Battleship(), un.Carrier(), un.Transport(), un.Submarine()]
+    UNIT_NAMES = [str(unit) for unit in UNITS]
+    
+    spent_ipcs = 0
+    finished = False
+    bought_units = []
+    
+    while spent_ipcs <= power.IPCs() and not finished:
+        buying_type = input("What type of unit would you like to buy: ")
+        
+        #converts buying_type from a string to a unit
+        if buying_type in UNIT_NAMES:
+            buying_type = UNITS[UNIT_NAMES.index(buying_type)]
+        else:
+            print("That is not a valid unit name")
+            continue
+        
+        
+        buying_num = input("How many would you like to buy: ")
+        try:
+            buying_num = int(buying_num)
+            total_cost = buying_num * buying_type.get_cost()
+            if total_cost <= power.IPCs and buying_num > 0:
+                spent_ipcs += total_cost
+                power.spend_IPCs(total_cost)
+                bought_units = bought_units + [buying_type for x in range(buying_num)]
+            else:
+                raise ValueError
+        except ValueError:
+            print("That is not a number of units that you can buy")
+            continue
+            
+        keep_going = input("Do you want to buy any more units? (y/n): ")
+        if keep_going.lower() == "n":
+            finished = True
+
+    return bought_units #Will return the bought units as a list to be used later in the place units
 
 def declare_attacks(power):
     '''
