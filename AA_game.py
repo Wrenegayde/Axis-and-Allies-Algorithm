@@ -37,11 +37,11 @@ def collect_IPCs(power):
     pass
 
 def take_turn(power):
-    buy_units(power)
+    bought_units = buy_units(power)
     declare_attacks(power)
     noncombat_move(power)
-    place_units(power)
-    collect_IPCs(power)
+    place_units(power, bought_units)
+    power.collect_IPCs()
 
 def check_win():
     #Returns a boolean to check if a side has won
