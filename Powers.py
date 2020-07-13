@@ -31,6 +31,9 @@ class Power( object ):
         """Returns the IPCs (money) that the power currently has"""
         return self.__IPCs
     
+    def spend_IPCs(self, num_spent):
+        self.__IPCs -= num_spent
+    
     def name(self):
         """Returns the power's name"""
         return self.__name
