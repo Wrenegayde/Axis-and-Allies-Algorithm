@@ -41,25 +41,28 @@ def take_casualties(unit_list, num_dead, terrains=["sea","land","air"]):
     if not unit_list_has_valid_terrains:
         return casualty_list, unit_list
     
-    
+    #If there are more casualties than remaining units, then they all die
     if num_dead >= len(unit_list) and unit_list_has_only_valid_terrains:
         return unit_list,[]
     
     
     while num_dead > len(casualty_list) and len(unit_list) > 0:
-        print("You have to remove " + str(num_dead) + " units.")
+        print("You have to remove " + str(num_dead) + " units total.")
         print("You have " + str(unit_list))
+	#Ask which unit type to remove and how many
         unit_to_remove = input("What type of unit do you want to remove: ").lower()
         how_many_to_remove = int(input("How many do you want to remove: "))
         
         num_of_removing_type = 0
         remove_locations = []
+	#Find all of the units that we want to remove
         for index,unit in enumerate(unit_list):
             if str(unit) == str(unit_to_remove):
                 unit_to_remove = unit
                 num_of_removing_type += 1
                 remove_locations.append(index)
         		
+	#Remove all of the ones that we found up until we have removed the number that we wanted to
         if num_of_removing_type > 0 :
             if unit_to_remove.unit_type() in terrains:
                 if how_many_to_remove <= (num_dead - len(casualty_list)) and how_many_to_remove > 0 and how_many_to_remove <= num_of_removing_type:
@@ -82,6 +85,8 @@ def check_win(attacker_units, defender_units, attacker_power, defender_power):
         return defender_power
     elif len(defender_units) == 0:
         return attacker_power
+    else:
+        return None
 
 
 def do_combat(attacker_units, defender_units, attacker_power, defender_power):
