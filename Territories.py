@@ -2,7 +2,7 @@
 class Territory( object ):
     """Model a territory in axis and allies"""
     
-    def __init__(self, nation, adj_territories, units, name, value = 0):
+    def __init__(self, nation, adj_territories, units, name, value):
         """
         Initialize the territory with a nation, and adjacent territories
         """
@@ -53,6 +53,9 @@ class Territory( object ):
             """
             for destroy_unit in units:
                 self.__units.remove(destroy_unit)
+    def add_adj(self, territories):
+        for territory in territories:
+            self.__adj_territories.append(territory)
 
     
     
@@ -60,7 +63,7 @@ class Territory( object ):
 class Land( Territory ):
     """"Land Territory"""
     def __init__(self, nation, adj_territories, units, name, value, IC, capital):
-        super().__init__(self, nation, adj_territories, units, name, value)
+        super().__init__(nation, adj_territories, units, name, value)
         #IC determines if there is an industrial complex in the territory and
         #whether the IC was built(2) or existed at the start of the game(1)
         #with (0) representing no IC
@@ -122,7 +125,7 @@ class Land( Territory ):
 class Sea( Territory ):
     """Sea Territory"""
     def __init__(self, nation, adj_territories, units, name, value):
-        super().__init__(self, nation, adj_territories, units, name, value)
+        super().__init__(nation, adj_territories, units, name, value)
         
     def create_units(self, units, territory):
         for unit in units:
