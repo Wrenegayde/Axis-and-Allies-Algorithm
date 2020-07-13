@@ -68,7 +68,7 @@ class Unit(object):
         """
         self.__has_moved = new_has_moved
 	
-	de get_cost(self):
+    def get_cost(self):
         return self.__cost
 
 
