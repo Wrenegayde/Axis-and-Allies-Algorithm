@@ -8,7 +8,7 @@
 
 #Imports
 import Powers
-import Territorries
+import Territories
 import Units as un
 import Setup
 
