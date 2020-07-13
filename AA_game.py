@@ -22,7 +22,7 @@ def declare_attacks(power):
     edge cases like strategic bombings, bltizes, amphibious assaults, etc. and 
     then it will call the combat function as many times as it needs
     '''
-    
+    #in amphibious assaults, send an extra int parameter to do_combat for the number of bombard hits from the battleships (it defaults to 0)
     #combat(power, defender, units, territory)
     
 def noncombat_move(power):
