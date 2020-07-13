@@ -89,14 +89,18 @@ def check_win(attacker_units, defender_units, attacker_power, defender_power):
         return None
 
 
-def do_combat(attacker_units, defender_units, attacker_power, defender_power):
+def do_combat(attacker_units, defender_units, attacker_power, defender_power,battleship_hits=0):
     """
     takes four parameters 
         list of attacker units, list of defender units, attacker power, defender power
     returns the list of units remaining in the territory, the power that won
     """
+    #Handle amphibious battleship hits 
+    temp_list, attackr_units = take_casualties(attacker_units, battleship_hits)
+    
     aagun_exists = False
     
+    #Handle AAgun first strikes
     for index,def_unit in enumerate(defender_units):
         if str(def_unit) == "antiaircraft":
             aagun_exists = True
