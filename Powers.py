@@ -2,7 +2,7 @@ import Territories
 
 class Power( object ):
     """Model one of the five powers in the game Axis and Allies"""
-    def __init__(self, team, territories, IPCs, name):
+    def __init__(self, team, territories, IPCs, name, isPlayer):
         """
         Initialize the power with a team, territories, IPCs, and a name
         """
@@ -10,6 +10,7 @@ class Power( object ):
         self.__territories = territories
         self.__IPCs = IPCs
         self.__name = name
+        self.__isPlayer = isPlayer
     
     def __str__(self):
         """Return the power's name as a string representation of the power"""
@@ -36,6 +37,10 @@ class Power( object ):
     
     def name(self):
         """Returns the power's name"""
+        return self.__name
+
+    def player(self):
+        """Returns whether or not the power is controlled by a player"""
         return self.__name
     
     def collect_IPCs(self):
