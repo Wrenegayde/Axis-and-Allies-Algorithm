@@ -21,9 +21,6 @@ class Unit(object):
     
     def __repr__(self):
         return "unit"
-        
-	def unit_type(self):
-		return "unit"
 	
     def roll_die(self):
         """
@@ -47,7 +44,7 @@ class Unit(object):
         if self.roll_die() <= self.__def_score:
             return True
         else:
-            return 
+            return False
     
     def get_move(self):
         """
@@ -67,10 +64,19 @@ class Unit(object):
         Sets the private local variable has_moved to this value
         """
         self.__has_moved = new_has_moved
-	
+    
+    def get_power(self):
+        '''
+        Return the power that the unit belongs to
+        '''
+        return self.__power
+    
     def get_cost(self):
-        return self.__cost
+        '''
+        Return the cost of the unit
 
+        '''
+        return self.__cost
 
 
 class LandUnit(Unit):
@@ -196,8 +202,6 @@ class SeaUnit(Unit):
 class Battleship(SeaUnit):#run some test cases on how this constructor works
     def __init__(self,attack=4,defense=4,cost=24,move=2,power=None):
         super().__init__(attack,defense,cost,move,power)
-        
-        #Do we want a bombard() method here, or will we add that in our combat function?
 
     def __str__(self):
         return "battleship"
@@ -246,8 +250,6 @@ class Carrier(SeaUnit):
 class Submarine(SeaUnit):
     def __init__(self,attack=2,defense=2,cost=8,move=2,power=None):
         super().__init__(attack,defense,cost,move,power)
-    
-    #do we want a first strike method, or does that go in the combat function?
 
     def __str__(self):
         return "submarine"
@@ -295,16 +297,6 @@ class Transport(SeaUnit):
     def __repr__(self):
         return "transport"
 
-
-class IndustrialComplex(Unit):
-	def __init__(self,attack=0,defense=0,cost=15,move=0,power=None):
-        super().__init__(attack,defense,cost,move,0,power)
-		
-	def __str__(self):
-        return "industrial complex"
-    
-    def __repr__(self):
-        return "industrial complex"
 
 	
 def main():
