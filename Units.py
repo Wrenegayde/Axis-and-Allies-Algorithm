@@ -67,6 +67,9 @@ class Unit(object):
         Sets the private local variable has_moved to this value
         """
         self.__has_moved = new_has_moved
+	
+	de get_cost(self):
+        return self.__cost
 
 
 
