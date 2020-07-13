@@ -38,7 +38,7 @@ class Power( object ):
     def name(self):
         """Returns the power's name"""
         return self.__name
-
+    
     def player(self):
         """Returns whether or not the power is controlled by a player"""
         return self.__name
@@ -46,4 +46,8 @@ class Power( object ):
     def collect_IPCs(self):
         for territory in self.__territories:
             self.__IPCs = self.__IPCs + territory.value()
+            
+    def gain_territory(self, territory):
+        self.__territories.append(territory)
+        
     
