@@ -39,7 +39,7 @@ def setup():
     finland = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(3)] + [u.Tank(power=Germany), u.Fighter(power=Germany)], "Finland", 2, 0, False)
     sweden = Territories.Land("neutral", [], [], "Sweden", 0, 0, False)
     germany = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(4)] + [u.Tank(power=Germany) for x in range(2)] + [u.AntiAircraft(power=Germany)], "Germany", 10, 2, True)
-    southern_europe = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(2)] + [u.Tank(power=Germany, u.AntiAircraft(power=Germay)], "Southern Europe", 6, 2, False)
+    southern_europe = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(2)] + [u.Tank(power=Germany), u.AntiAircraft(power=Germay)], "Southern Europe", 6, 2, False)
     eastern_europe = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(3)] + [u.Tank(power=Germany), u.Fighter(power=Germany)], "Eastern Europe", 3, 0, False)
     ukraine = Territories.Land("Germany", [], [u.Infantry(power=Germany) for x in range(3)] + [u.Tank(power=Germany) for x in range(2)] + [u.Fighter(power=Germany)], "Ukraine", 3, 0, False)
     algeria = Territories.Land("Germany", [], [u.Infantry(power=Germany)], "Algeria", 1, 0, False)
