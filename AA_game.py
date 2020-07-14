@@ -57,6 +57,38 @@ def declare_attacks(power):
     edge cases like strategic bombings, bltizes, amphibious assaults, etc. and 
     then it will call the combat function as many times as it needs
     '''
+    atk = input("Strategic Bombing (1) Amphibious Assault (2) Blitz(3) General Combat (4) or Quit (5)")
+    while atk != "5":
+        if atk == "1":
+            atk_terr = input("Territory to attack:")
+            from_terr = input("Territory bomber is from:")
+            ret_terr = input("Territory bomber will return to:")
+            ind_from = power.territories().index(from_terr)
+            ind_ret = power.territories().index(ret_terr)
+
+        elif atk == "2":
+            atk_terr_1 = input("Territory to blitz through:")
+            atk_terr_2 = input("Territory to end on:")
+            from_terr = input("Territory tank is from:")
+
+        elif atk == "3":
+            from_terr = input("Territory to attack from:")
+
+        elif atk == "4":
+            atk_terr = input("Territory to attack:")
+            from_terr = input("Territory to attack from:")
+            
+
+
+        elif atk == "5":
+            break
+
+
+
+
+
+
+        atk = input("Strategic Bombing (1) Amphibious Assault (2) Blitz(3) General Combat (4) or Quit (5)")
     #in amphibious assaults, send an extra int parameter to do_combat for the number of bombard hits from the battleships (it defaults to 0)
     #combat(power, defender, units, territory)
     
