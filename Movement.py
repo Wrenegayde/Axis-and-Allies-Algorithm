@@ -38,19 +38,25 @@ def find_path(start_terr, end_terr, this_path=[], shortest_path=[]):
         
         return shortest_path
 
-def move(unit, start_terr, end_terr, limit):
+def noncombat_move(unit, start_terr, end_terr):
     '''
     Takes a unit, figures out if a move is valid, then executes that move
-    returns true if the unit can move and false if if the unit cant.
-    used for noncombat (limit is units movement speed) and retreat purposes (limit becomes 1)
+    returns the number of areas moved by the unit
     '''
-    if(find_path(start_terr, end_terr) <= limit):
+    limit = unit.get_move() - unit.get_has_moved()
+    path = find_path(start_terr, end_terr)
+    if len(path) - 1 <= limit:
+        unit.set_has_moved(len(path) - 1)
         end_terr.add_unit(unit)
-        return True
+        return len(path) - 1
     else:
-        return False
+        return 0
 
-
+def retreat(unit, terr):
+    '''
+    move method modified to just retreat. No restrictions on movement.
+    '''
+    terr.add_unit(unit)
              
 
 def main():
