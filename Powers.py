@@ -41,7 +41,7 @@ class Power( object ):
     
     def player(self):
         """Returns whether or not the power is controlled by a player"""
-        return self.__name
+        return self.__isPlayer
     
     def collect_IPCs(self):
         for territory in self.__territories:
