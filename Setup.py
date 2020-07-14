@@ -11,13 +11,38 @@ import Territories as t
 import Units as u
 
 def setup():
-    
+    isValid = False
+    while not isValid:
+        player = input("Which Power would you like to play as?\nUSSR\nGermany\nUK\nJapan\nUS")
+        if player == "USSR" or player == "Germany" or player == "UK" or player == "Japan" or player == "US":
+            isValid = True
+
 #Create Powers
-    USSR = Powers.Power("Allies", [], 24, "USSR", True)
-    Germany = Powers.Power("Axis", [], 32, "Germany", True)
-    UK = Powers.Power("Allies", [], 30, "UK", True)
-    Japan = Powers.Power("Axis", [], 25, "Japan", True)
-    US = Powers.Power("Allies", [], 36, "US", True)
+    if player == 'USSR':
+        USSR = Powers.Power("Allies", [], 24, "USSR", True)
+    else:
+        USSR = Powers.Power("Allies", [], 24, "USSR", False)
+
+    if player == 'Germany':
+        Germany = Powers.Power("Axis", [], 32, "Germany", True)
+    else:
+        Germany = Powers.Power("Axis", [], 32, "Germany", False)
+
+    if player == 'UK':
+        UK = Powers.Power("Allies", [], 30, "UK", True)
+    else:
+        UK = Powers.Power("Allies", [], 30, "UK", False)
+
+    if player == 'Japan':
+        Japan = Powers.Power("Axis", [], 25, "Japan", True)
+    else:
+        Japan = Powers.Power("Axis", [], 25, "Japan", False)
+
+    if player == 'US':
+        US = Powers.Power("Allies", [], 36, "US", True)
+    else:
+        US = Powers.Power("Allies", [], 36, "US", False)
+
     neutral = Powers.Power("neutral", [], 0, "neutral", False)
     
 #Create Territories with their units (without adj territories)
