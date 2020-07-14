@@ -89,7 +89,7 @@ def check_win(attacker_units, defender_units, attacker_power, defender_power):
         return None
 
 
-def do_combat(attacker_units, defender_units, attacker_power, defender_power,battleship_hits=0):
+def do_combat(attacker_units, defender_units, attacker_power, defender_power,battleship_hits=0, defending_territory):
     """
     takes four parameters 
         list of attacker units, list of defender units, attacker power, defender power
@@ -138,9 +138,44 @@ def do_combat(attacker_units, defender_units, attacker_power, defender_power,bat
         winning_power = check_win(attacker_units, defender_units, attacker_power, defender_power)
        
         if winning_power == None:
-            if input(str(attacker_power) + ", do you want to keep attacking? (y/n): ").lower() == "n":
-                winning_power = defender_power
-                #We need to do something right here to handle the attacker retreating
+            if attacker_power.player():
+                option = input(str(attacker_power) + ", do you want to keep attacking? (y/n): ").lower()
+                while option != 'y' and option != 'n':
+                    option = input(str(attacker_power) + ", do you want to keep attacking? (y/n): ").lower()
+
+                if option == "n":
+                    winning_power = defender_power
+
+                else:
+                    isValid = False
+                    while not isValid:
+                         option = input('Which territory would you like to retreat to, ' + str(attacker_power).lower() + '?')
+                         for terr in defending_territory.adj_territories():
+                            if str(terr) == option and terr.nation().team() == attacker_power().team():
+                                for unit in attacker_units:
+                                    move(unit, terr)
+                                isValid = True
+                                break
+                    winning_power = defending_power
+                    
+            else:
+                option = #COM CODE
+
+                if option == "n":
+                    winning_power = defender_power
+
+                else:
+                    isValid = False
+                    while not isValid:
+                        option = input('Which territory would you like to retreat to, ' + str(attacker_power).lower() + '?')
+                        for terr in defending_territory.adj_territories():
+                            if str(terr) == option and terr.nation().team() == attacker_power().team():
+                                for unit in attacker_units:
+                                    move(unit, terr)
+                                isValid = True
+                                break
+                    winning_power = defending_power
+
     
     aagun_list = []          
     if aagun_exists:
@@ -149,6 +184,7 @@ def do_combat(attacker_units, defender_units, attacker_power, defender_power,bat
     if winning_power == defender_power:
         return defender_units + aagun_list, defender_power
     else:
+        defending_territory.capture_territory(attacker_power)
         return attacker_units + aagun_list, attacker_power
              
         
