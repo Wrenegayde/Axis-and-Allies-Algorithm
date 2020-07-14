@@ -180,7 +180,7 @@ def do_combat(attacker_units, defender_units, attacker_power, defender_power,bat
                          for terr in defending_territory.adj_territories():
                             if str(terr) == option and terr.nation().team() == attacker_power().team():
                                 for unit in attacker_units:
-                                    move(unit, terr)
+                                    move(unit, defending_territory, terr, 1)
                                 isValid = True
                                 break
                     winning_power = defending_power
@@ -198,7 +198,7 @@ def do_combat(attacker_units, defender_units, attacker_power, defender_power,bat
                         for terr in defending_territory.adj_territories():
                             if str(terr) == option and terr.nation().team() == attacker_power().team():
                                 for unit in attacker_units:
-                                    move(unit, terr)
+                                    move(unit, defending_territory, terr, 1)
                                 isValid = True
                                 break
                     winning_power = defending_power
