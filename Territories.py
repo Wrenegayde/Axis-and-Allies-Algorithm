@@ -79,48 +79,48 @@ class Land( Territory ):
             self.__capital = capital
         
             
-    def industrial_complex( self ):
-        """Returns whether there is an IC on the terriory and if so what type""" 
-        return self.__IC
-    
-    def capital( self ):
-        """Returns whether the nation is a captial"""
-        return self.__capital
-    
-    def units_produced( self ):
-        """Returns how many units the territory has produced this turn"""
-        return self.__units_produced
-    
-    def value( self ):
-        """Returns the IPC value of the territory"""
-        return self.__value
-    def create_units(self, units):
-        """
-        Creates units on a territory while tracking whether the territory
-        has an IC to produce with, and if so how many units it has produced
-        """
-        if self.__IC > 0:
-            for unit in units:
-                if self.__IC == 1:
-                    if self.__units_produced < value:
+        def industrial_complex( self ):
+            """Returns whether there is an IC on the terriory and if so what type""" 
+            return self.__IC
+        
+        def capital( self ):
+            """Returns whether the nation is a captial"""
+            return self.__capital
+        
+        def units_produced( self ):
+            """Returns how many units the territory has produced this turn"""
+            return self.__units_produced
+        
+        def value( self ):
+            """Returns the IPC value of the territory"""
+            return self.__value
+        def create_units(self, units):
+            """
+            Creates units on a territory while tracking whether the territory
+            has an IC to produce with, and if so how many units it has produced
+            """
+            if self.__IC > 0:
+                for unit in units:
+                    if self.__IC == 1:
+                        if self.__units_produced < self.__value:
+                            self.__units.append(unit)
+                            self.__units_produced += 1
+                    elif self.__IC == 2:
                         self.__units.append(unit)
-                        self.__units_produced += 1
-                elif self.__IC == 2:
-                    self.__units.append(unit)
+                        
+                        
+        def increase_units_produced(self):
+            """Allows other things to modify the units produced value"""
+            self.__units_produced += 1
                     
-                    
-    def increase_units_produced(self):
-        """Allows other things to modify the units produced value"""
-        self.__units_produced += 1
                 
-            
-    def cleanup(self):
-        """
-        Resets the units_produced value for starting the next turn
-        """
-        self.__units_produced = 0
-                    
-    
+        def cleanup(self):
+            """
+            Resets the units_produced value for starting the next turn
+            """
+            self.__units_produced = 0
+                        
+        
         
 class Sea( Territory ):
     """Sea Territory"""
