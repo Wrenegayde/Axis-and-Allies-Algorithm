@@ -56,6 +56,13 @@ class Territory( object ):
     def add_adj(self, territories):
         for territory in territories:
             self.__adj_territories.append(territory)
+    
+    def add_unit(self, unit):
+        '''
+        same as create_units in the lower classes, buy bypasses the IC's limit of units it can create while
+        used in movement
+        '''
+        self.__units.append(unit)
 
     
     
