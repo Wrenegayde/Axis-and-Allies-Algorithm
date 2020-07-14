@@ -13,12 +13,12 @@ import Units as u
 def setup():
     
 #Create Powers
-    USSR = Powers.Power("Allies", [], 24, "USSR")
-    Germany = Powers.Power("Axis", [], 32, "Germany")
-    UK = Powers.Power("Allies", [], 30, "UK")
-    Japan = Powers.Power("Axis", [], 25, "Japan")
-    US = Powers.Power("Allies", [], 36, "US")
-    neutral = Powers.Power("neutral", [], 0, "neutral")
+    USSR = Powers.Power("Allies", [], 24, "USSR", True)
+    Germany = Powers.Power("Axis", [], 32, "Germany", True)
+    UK = Powers.Power("Allies", [], 30, "UK", True)
+    Japan = Powers.Power("Axis", [], 25, "Japan", True)
+    US = Powers.Power("Allies", [], 36, "US", True)
+    neutral = Powers.Power("neutral", [], 0, "neutral", False)
     
 #Create Territories with their units (without adj territories)
     #Create Land Territories
@@ -241,7 +241,7 @@ def setup():
     zone_14.add_adj([zone_4, zone_5, zone_9, zone_13, zone_15, zone_22])
     zone_15.add_adj([zone_5, zone_14, zone_22])
     zone_16.add_adj([karelia, zone_10])
-    zone_17.add_adj([finland, sweden, western_europe, germany, eastern_europe. karelia, zone_10])
+    zone_17.add_adj([finland, sweden, western_europe, germany, eastern_europe, karelia, zone_10])
     zone_18.add_adj([gibraltar, spain, western_europe, algeria, zone_11, zone_19])
     zone_19.add_adj([southern_europe, libya, zone_18, zone_20, zone_21])
     zone_20.add_adj([eastern_europe, ukraine, caucasus, turkey, zone_19, zone_21])

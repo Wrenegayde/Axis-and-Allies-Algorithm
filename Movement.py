@@ -1,20 +1,22 @@
 import Territories
 import Units as un
+import Setup as stp
 
 def find_path(start_terr, end_terr, this_path=[], shortest_path=[]):
     """
     Takes the start territory and end territory of the path you want
-    Uses weird recursion and has not been tested! Test thoroughly as soon as setup is done!
+    We probably want to add on to this so that we can tell it to only do a land path, only do a sea path,
+         or only go through friendly territories
     Returns the shortest path between them backwards, probably most useful for its length
     """
     if len(this_path) > len(shortest_path) and len(shortest_path) != 0:
         return shortest_path
     else:
         
-        this_path.append(end_terr)
+        this_path = this_path + [end_terr]
 
         if start_terr in end_terr.adj_territories():
-            this_path.append(start_terr)
+            this_path = this_path + [start_terr]
             if len(this_path) < len(shortest_path) or len(shortest_path) == 0:
                 return this_path
             else:
@@ -32,19 +34,24 @@ def find_path(start_terr, end_terr, this_path=[], shortest_path=[]):
         
         for path in valid_paths:
             if len(path) < len(shortest_path) or len(shortest_path) == 0:
-                return path
+                shortest_path = path
         
         return shortest_path
              
 
 def main():
-    terr1 = Territories.Territory("US", [], [], "terr1")
-    terr2 = Territories.Territory("US", [terr1], [], "terr2")
-    terr3 = Territories.Territory("US", [terr2, terr1], [], "terr3")
-    terr4 = Territories.Territory("US", [terr2, terr3], [], "terr4") 
-    
+    powers = stp.setup()
 
-    print(find_path(terr1, terr4))
+    #print(powers[0].territories())
+    #print(powers[1].territories())
+    
+    #Karelia and Germany
+    terr1 = powers[0].territories()[0]
+    terr2 = powers[1].territories()[2]
+    
+    path_list = find_path(terr1, terr2)
+
+    print(path_list)
 
 if __name__ == "__main__":
     main()
