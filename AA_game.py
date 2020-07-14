@@ -51,14 +51,18 @@ def buy_units(power):
 
     return bought_units #Will return the bought units as a list to be used later in the place units
 
-def declare_attacks(power):
+def declare_attacks(power, power_lst):
     '''
     declare attacks can handle whether attacks are legal as well as do the
     edge cases like strategic bombings, bltizes, amphibious assaults, etc. and 
     then it will call the combat function as many times as it needs
     '''
-    atk = input("Strategic Bombing (1) Amphibious Assault (2) Blitz(3) General Combat (4) or Quit (5)")
+    
+    atk = ''
     while atk != "5":
+        atk = input("Strategic Bombing (1) Amphibious Assault (2) Blitz(3) General Combat (4) or Quit (5)")
+        
+        
         if atk == "1":
             atk_terr = input("Territory to attack:")
             from_terr = input("Territory bomber is from:")
@@ -67,28 +71,45 @@ def declare_attacks(power):
             ind_ret = power.territories().index(ret_terr)
 
         elif atk == "2":
-            atk_terr_1 = input("Territory to blitz through:")
-            atk_terr_2 = input("Territory to end on:")
-            from_terr = input("Territory tank is from:")
+            from_terr = input("Territory to attack from:")
 
         elif atk == "3":
-            from_terr = input("Territory to attack from:")
+            atk_terr = input("Territory to blitz through:")
+            from_terr = input("Territory tank is from:")
+
+            isValid = False
+            isValid2 = False
+            for pwr in power_lst:
+                for terr in pwr.territories():
+                    if str(terr) == atk_terr:
+                        isValid = True
+                    if str(terr) == from_terr:
+                        isValid2 = True
+
+            if isValid and isValid2:
+                for unit in from_terr:
+                    if str(unit) == tank and unit.get_has_moved() < 2 and unit.get_power == power:
+                        path = find_path(from_terr, atk_terr)
+
+                        if len(path) - 1 == 1:
+                            tank = from_terr.pop(unit)
+                            noncombat_move(tank, from_terr, atk_terr)
+                            atk_terr.capture_territory(power)
+                            break
+                        else:
+                            print("Invalid Blitz")
+                            break
+            else:
+                print("One or more invalid territories were entered. Invalid Blitz")
 
         elif atk == "4":
             atk_terr = input("Territory to attack:")
             from_terr = input("Territory to attack from:")
-            
+        
+        else:
+            print("Invalid option")
 
 
-        elif atk == "5":
-            break
-
-
-
-
-
-
-        atk = input("Strategic Bombing (1) Amphibious Assault (2) Blitz(3) General Combat (4) or Quit (5)")
     #in amphibious assaults, send an extra int parameter to do_combat for the number of bombard hits from the battleships (it defaults to 0)
     #combat(power, defender, units, territory)
     
